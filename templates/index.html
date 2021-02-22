@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Search Page</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Should This Loan be Approved or Denied</h1>
+
+    <div class="form">
+        <form action="/predict" method="POST">
+            <input type="number" name="GrAppv" id="GrAppv" placeholder="Loan Size">
+            <input type="number" min="0" max="1" step="0.01" name="Backed_by_SBA" id="Backed_by_SBA"
+                   placeholder="Proportion of gross amount guaranteed by SBA">
+            <input type="number" name="Term" id="Term" placeholder="Loan term in months">
+            <input type="number" name="NoEmp" id="NoEmp" placeholder="Number of business employees">
+            <select name="NewExist" id="NewExist">
+  <option value="Existing business">Existing business</option>
+  <option value="New business">New business</option>
+</select>
+            <select name="LowDoc" id="LowDoc">
+  <option value="Yes">Loan with a one page application</option>
+  <option value="No">Loan with more information attached to the application</option>
+</select>
+
+
+
+
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</div>
+{% endblock %}
